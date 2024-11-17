@@ -10,74 +10,107 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
+        .container{
+            width: 100%;
+        }
         body {
             display: flex;
             background-color: #f0f1f7;
             width: 100%;
         }
+           /* Header section */
+           .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px 30px;
+            background-color: #0056b3;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+        }
+
+        .header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .header .dashboard-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
         /* Main container with grid layout */
         .main-container {
             display: flex;
-            width: 95vw;
-    height: 95vh;
-    padding: 20px;
-    gap: 20px;
-    overflow-y: auto;
+            flex-grow: 1;
+            width: 100%;
+            padding: 20px;
+            gap: 20px;
+            overflow-y: auto;
+            height: 90%;
+
         }
 
+        /* Existing styles */
         .first-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            display: flex;
             gap: 25px;
-            width: 65%;
+            width: 100%;
             padding-top: 25px;
             padding-left: 30px;
         }
 
         .last-column {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 10px;
-            width: 25%;
-            padding-top: 30px;
-            height: 875px;
+            display: flex;
+            flex-direction: column;
+            gap: 5%;
+            width: 100%;
+            height: 100%;
         }
-
         /* Section styles */
         .section {
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
+            width: 100%;
+
         }
 
         /* Specific colors for each section */
         .add-edit {
-            background: linear-gradient(135deg, #BFECFF, #9ED6FF);
-            height: 740px;
+            background: #E6F7FF;
+        }
+        .section.add-edit{
+            width: 100%;
         }
 
         .task { 
-            background-color: #FFCCEA; 
+            background-color: #FFDAF5; 
             display: flex;
             flex-direction: column;
         }
 
         .calendar {
-            background-color: #FFF6E3;
-            height: 300px;
+            background-color: #ddd;
         }
 
         .graph {
             background-color: #CDC1FF;
-            height: 300px;
+            height: 100%;
         }
 
         /* Fancy styles for Add/Edit/Remove Task */
@@ -322,7 +355,14 @@
 </head>
 <body>
     <?php include 'dashboard.php'; ?>
-    
+    <div class="container">
+    <header class="header">
+        <div class="dashboard-title">Todo List Dashboard</div>
+        <div class="profile">
+
+            <span>Welcome John Doe!</span>
+        </div>
+    </header>
     <!-- Main Container for Sections -->
     <div class="main-container">
         <div class="first-column">
@@ -373,9 +413,7 @@
                     <!-- Task items will appear here -->
                 </div>
             </div>
-        </div>
-
-        <div class="last-column">
+            <div class="last-column">
             <!-- Calendar -->
             <div class="section calendar">
     <h2>Calendar</h2>
@@ -396,6 +434,10 @@
                 
             </div>
         </div>
+        </div>
+
+       
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

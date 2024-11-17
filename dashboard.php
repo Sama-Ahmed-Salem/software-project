@@ -26,6 +26,7 @@
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
+            justify-content: space-between;
         }
 
         .logo-section {
@@ -93,9 +94,6 @@
             color: #333;
         }
 
-        .logout-section {
-            margin-top: 430px;
-        }
     </style>
 </head>
 <body>
@@ -105,6 +103,7 @@
                 <a href="profile.php">
                 <img src="images/profile picture.png" alt="User Avatar" class="user-avatar">
             </div>
+            <div>
             <li class="nav-item active">   
                 <a href="user.php">
                     <img src="images/dashboard.png" alt="Boards" class="icon">
