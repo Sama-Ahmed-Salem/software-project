@@ -263,7 +263,7 @@
       height: 100vh;
       width: 300vw;
       transform: translate(35%, 0);
-      background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA); /* Gradient background */
+      background: linear-gradient(135deg,#FFF6E3, #FFCCEA, #BFECFF, #CDC1FF); /* Gradient background */
       transition: 1s ease-in-out;
       z-index: 6;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
