@@ -1,3 +1,41 @@
+<?php
+require 'config.php'; 
+require 'User_class.php'; 
+
+$user = new User($conn);
+
+// Handle sign-up
+if (isset($_POST["submit"])) {
+    $name = $_POST["signup-username"];
+    $email = $_POST["signup-email"];
+    $password = $_POST["signup-password"];
+    $confirmPassword = $_POST["signup-confirm-password"];
+
+    $message = $user->signUp($name, $email, $password, $confirmPassword);
+    echo "<script>alert('$message');</script>";
+}
+
+// Handle sign-in
+if (isset($_POST["submitt"])) {
+  $username = $_POST["signin-username"];
+  $password = $_POST["signin-password"];
+
+  $message = $user->signIn($username, $password);
+
+  if ($message === "Login successful.") {
+      header("Location: dashboard.php");
+      exit;
+  } else {
+      echo "<script>alert('$message');</script>";
+  }
+} 
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -331,28 +369,32 @@
 <body>
 <div id="container" class="container">
 		<!-- FORM SECTION -->
-		<div class="row">
+		
 			<!-- SIGN UP -->
+   <form class="" action="" method="post" autocomplete="off" >
+
+   <div class="row">
 			<div class="col align-items-center flex-col sign-up">
 				<div class="form-wrapper align-items-center">
 					<div class="form sign-up">
 						<div class="input-group">
-							<i class='bx bxs-user'></i>
-							<input type="text" id="signup-username" placeholder="Username">
+							<i for="signup-username" class='bx bxs-user'></i>
+							<input type="text" name="signup-username" id="signup-username" placeholder="Username">
 						</div>
 						<div class="input-group">
-							<i class='bx bx-mail-send'></i>
-							<input type="email" id="signup-email" placeholder="Email">
+							<i for="signup-email" class='bx bx-mail-send'></i>
+							<input type="email" name="signup-email" id="signup-email" placeholder="Email">
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i>
-							<input type="password" id="signup-password" placeholder="Password">
+							<i for="signup-password" class='bx bxs-lock-alt'></i>
+							<input type="password" name="signup-password" id="signup-password" placeholder="Password">
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i>
-							<input type="password" id="signup-confirm-password" placeholder="Confirm password">
+							<i for="signup-confirm-password" class='bx bxs-lock-alt'></i>
+							<input type="password" name="signup-confirm-password" id="signup-confirm-password" placeholder="Confirm password">
 						</div>
-						<button onclick="validateSignUp(event)">
+            <!-- onclick="validateSignUp(event)" -->
+						<button type="submit" name="submit">
 							Sign up
 						</button>
 						<p>
@@ -364,22 +406,27 @@
 							</b>
 						</p>
 					</div>
-				</div>
-			</div>
+				  </div>
+			  </div>
+      </form>
+
 			<!-- END SIGN UP -->
+
+
 			<!-- SIGN IN -->
 			<div class="col align-items-center flex-col sign-in">
 				<div class="form-wrapper align-items-center">
 					<div class="form sign-in">
 						<div class="input-group">
-							<i class='bx bxs-user'></i>
-							<input type="text" id="signin-username" placeholder="Username">
+							<i for="signin-username" class='bx bxs-user'></i>
+							<input type="text" name="signin-username" id="signin-username" placeholder="Username">
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i>
-							<input type="password" id="signin-password" placeholder="Password">
+							<i for="signin-password" class='bx bxs-lock-alt'></i>
+							<input type="password" name="signin-password" id="signin-password" placeholder="Password">
 						</div>
-						<button onclick="validateSignIn(event)">
+            <!-- onclick="validateSignIn(event)" -->
+						<button type="submit" name="submitt">
 							Sign in
 						</button>
 						<p>
@@ -401,8 +448,10 @@
 				</div>
 			</div>
 			<!-- END SIGN IN -->
+
 		</div>
 		<!-- END FORM SECTION -->
+
 		<!-- CONTENT SECTION -->
 		<div class="row content-row">
 			<!-- SIGN IN CONTENT -->
