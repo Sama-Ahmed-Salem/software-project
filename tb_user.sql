@@ -39,11 +39,11 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `name`, `email`, `password`) VALUES
-(1, 'jana', 'jana1@gmail.com', 'jana123'),
-(2, 'sama', 'sama1@gmail.com', 'sama123'),
-(3, 'mostafa', 'mostafa1@gmail.com', 'mostafa123'),
-(4, 'habiba', 'habiba1@example.com', 'habiba123'),
-(5, 'shaaban', 'shaaban1@gmail.com', 'shaaban123');
+(1, 'jana', 'jana1@gmail.com', PASSWORD('jana123')),
+(2, 'sama', 'sama1@gmail.com', PASSWORD('sama123')),
+(3, 'mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123')),
+(4, 'habiba', 'habiba1@example.com', PASSWORD('habiba123')),
+(5, 'shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'));
 
 --
 -- Indexes for dumped tables

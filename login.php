@@ -6,24 +6,24 @@ $user = new User($conn);
 
 // Handle sign-up
 if (isset($_POST["submit"])) {
-    $name = $_POST["signup-username"];
-    $email = $_POST["signup-email"];
-    $password = $_POST["signup-password"];
-    $confirmPassword = $_POST["signup-confirm-password"];
+    $name =htmlspecialchars($_POST["signup-username"],ENT_QUOTES,'UTF-8') ;
+    $email =htmlspecialchars($_POST["signup-email"],ENT_QUOTES,'UTF-8') ;
+    $password =htmlspecialchars($_POST["signup-password"],ENT_QUOTES,'UTF-8') ;
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    $confirmPassword =htmlspecialchars($_POST["signup-confirm-password"],ENT_QUOTES,'UTF-8') ;
 
-    $message = $user->signUp($name, $email, $password, $confirmPassword);
+    $message =htmlspecialchars($user->signUp($name, $email, $password, $confirmPassword),ENT_QUOTES,'UTF-8') ;
     echo "<script>alert('$message');</script>";
 }
 
 // Handle sign-in
 if (isset($_POST["submitt"])) {
-  $username = $_POST["signin-username"];
-  $password = $_POST["signin-password"];
-
-  $message = $user->signIn($username, $password);
+  $username =htmlspecialchars($_POST["signin-username"],ENT_QUOTES,'UTF-8') ;
+  $password =htmlentities($_POST["signin-password"],ENT_QUOTES,'UTF-8') ;
+  $message =htmlspecialchars($user->signIn($username, $password),ENT_QUOTES,'UTF-8') ;
 
   if ($message === "Login successful.") {
-      header("Location: dashboard.php");
+      header("Location: user.php");
       exit;
   } else {
       echo "<script>alert('$message');</script>";

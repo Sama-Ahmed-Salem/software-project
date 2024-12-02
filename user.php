@@ -31,19 +31,6 @@
             font-size: 20px;
         }
 
-        .header .profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
         .header .dashboard-title {
             font-size: 24px;
             font-weight: bold;
@@ -358,10 +345,6 @@
     <div class="container">
     <header class="header">
         <div class="dashboard-title">Todo List Dashboard</div>
-        <div class="profile">
-
-            <span>Welcome John Doe!</span>
-        </div>
     </header>
     <!-- Main Container for Sections -->
     <div class="main-container">
@@ -402,12 +385,15 @@
                 <div class="task-header">
                     <h2>Task View</h2>
                     <select id="task-filter" onchange="applyFilter()">
-                        <option value="none">Filter by Date and Priority</option>
-                        <option value="date-old-new">Date: Old to New</option>
-                        <option value="date-new-old">Date: New to Old</option>
-                        <option value="priority-high-low">Priority: High to Low</option>
-                        <option value="priority-low-high">Priority: Low to High</option>
-                    </select>
+    <option value="none">Filter by Date and Priority</option>
+    <option value="date-old-new">Date: Old to New</option>
+    <option value="date-new-old">Date: New to Old</option>
+    <option value="priority-high-low">Priority: High to Low</option>
+    <option value="priority-low-high">Priority: Low to High</option>
+    <option value="category-work">Category: Work</option>
+    <option value="category-home">Category: Home</option>
+    <option value="category-entertainment">Category: Entertainment</option>
+</select>
                 </div>
                 <div class="tasks" id="tasks">
                     <!-- Task items will appear here -->
@@ -539,25 +525,54 @@ function markAsDone(taskIndex) {
 
         // Apply Filter Function
         function applyFilter() {
-            const filter = document.getElementById('task-filter').value;
-            switch (filter) {
-                case 'date-old-new':
-                    tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
-                    break;
-                case 'date-new-old':
-                    tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
-                    break;
-                case 'priority-high-low':
-                    tasks.sort((a, b) => a.priority === 'High' ? -1 : (b.priority === 'High' ? 1 : 0));
-                    break;
-                case 'priority-low-high':
-                    tasks.sort((a, b) => a.priority === 'Low' ? -1 : (b.priority === 'Low' ? 1 : 0));
-                    break;
-                default:
-                    break;
-            }
-            displayTasks();
-        }
+    const filter = document.getElementById('task-filter').value;
+    
+    switch (filter) {
+        case 'date-old-new':
+            tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+            break;
+        case 'date-new-old':
+            tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'priority-high-low':
+            tasks.sort((a, b) => a.priority === 'High' ? -1 : (b.priority === 'High' ? 1 : 0));
+            break;
+        case 'priority-low-high':
+            tasks.sort((a, b) => a.priority === 'Low' ? -1 : (b.priority === 'Low' ? 1 : 0));
+            break;
+        case 'category-work':
+            // Sort tasks to bring 'Work' category to the top, without deleting others
+            tasks.sort((a, b) => {
+                if (a.category === 'Work' && b.category !== 'Work') return -1;
+                if (a.category !== 'Work' && b.category === 'Work') return 1;
+                return 0; // Keep original order for other categories
+            });
+            break;
+        case 'category-home':
+            // Sort tasks to bring 'Home' category to the top, without deleting others
+            tasks.sort((a, b) => {
+                if (a.category === 'Home' && b.category !== 'Home') return -1;
+                if (a.category !== 'Home' && b.category === 'Home') return 1;
+                return 0; // Keep original order for other categories
+            });
+            break;
+        case 'category-entertainment':
+            // Sort tasks to bring 'Entertainment' category to the top, without deleting others
+            tasks.sort((a, b) => {
+                if (a.category === 'Entertainment' && b.category !== 'Entertainment') return -1;
+                if (a.category !== 'Entertainment' && b.category === 'Entertainment') return 1;
+                return 0; // Keep original order for other categories
+            });
+            break;
+        default:
+            break;
+    }
+
+    // Display tasks after sorting
+    displayTasks();
+}
+
+
         let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
