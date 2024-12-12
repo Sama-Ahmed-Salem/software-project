@@ -28,42 +28,48 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_user` (
-  `id` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(75) NOT NULL
+  `name` VARCHAR(25) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(75) NOT NULL,
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id`, `name`, `email`, `password`) VALUES
-(1, 'jana', 'jana1@gmail.com', PASSWORD('jana123')),
-(2, 'sama', 'sama1@gmail.com', PASSWORD('sama123')),
-(3, 'mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123')),
-(4, 'habiba', 'habiba1@example.com', PASSWORD('habiba123')),
-(5, 'shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'));
+INSERT INTO `tb_user` (`name`, `email`, `password`) VALUES
+('jana', 'jana1@gmail.com', PASSWORD('jana123')),
+('sama', 'sama1@gmail.com', PASSWORD('sama123')),
+('mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123')),
+('habiba', 'habiba1@example.com', PASSWORD('habiba123')),
+('shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'));
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Table structure for table `feedback`
 --
 
---
--- Indexes for table `tb_user`
---
-ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id`);
+CREATE TABLE `feedback` (
+  `feedback_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(25) NOT NULL,
+  `rating` ENUM('Satisfied', 'Neutral', 'Unhappy') NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`feedback_id`),
+  FOREIGN KEY (`name`) REFERENCES `tb_user`(`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Sample data for `feedback` table
 --
 
---
--- AUTO_INCREMENT for table `tb_user`
---
-ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+INSERT INTO `feedback` (`name`, `rating`) VALUES
+('sama', 'Neutral'),
+('mostafa', 'Unhappy'),
+('habiba', 'Satisfied'),
+('shaaban','Satisfied');
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
