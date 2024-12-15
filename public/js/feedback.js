@@ -2,7 +2,7 @@ function validate()
 {
   var yourfeedback = document.getElementById("yourfeedback").value;
   var error_message = document.getElementById("error_message");
-  
+
   error_message.style.padding = "10px";
   
   var text;
