@@ -71,7 +71,7 @@ class User extends Model {
 
     public function submitFeedback($username, $feedback) {
         if (empty($feedback)) {
-            return "Feedback cannot be empty.";
+           
         }
 
         // Insert or update feedback into the database for the specific user
