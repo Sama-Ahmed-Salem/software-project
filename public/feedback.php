@@ -1,51 +1,115 @@
+<?php
+require '../app/db/config.php'; 
+require '../app/model/user_class.php'; 
+
+$user = new User($conn);
+
+if (!isset($_SESSION['username'])) {
+  echo "You must be logged in to submit feedback.";  // Send a user-friendly message if not logged in
+  exit;
+}
+
+$username = $_SESSION['username'];  // Get the logged-in user's username
+
+// Check if feedback is set in the POST data
+if (isset($_POST['feedback'])) {
+  $feedback = htmlspecialchars($_POST['feedback'], ENT_QUOTES, 'UTF-8');
+
+  // Call the submitFeedback method, passing the logged-in user's username and feedback
+  $message = $user->submitFeedback($username, $feedback);
+  
+  // Return the message or redirect to another page with a success message
+  echo $message;  // You could redirect after this, if needed, or display a success message
+ // Send a message if feedback is empty or not set
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../public/css/feedback.css">
-    <title>Let Us Know Your Feedback</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Page</title>
+  <style>
+    body {
+      display: flex;
+      background-color: #f0f1f7;
+      margin: 0;
+    }
 
+    .feedback-container {
+      margin: auto;
+      padding: 20px;
+      max-width: 500px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-  <body>
+    h2 {
+      text-align: center;
+      color: #332902;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .input_field {
+      margin: 20px 0;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #66dbff;
+      resize: none;
+      height: 100px;
+    }
+
+    .btn {
+      text-align: center;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA);
+      color: black;
+      text-transform: uppercase;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #error_message {
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA);
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Include Dashboard -->
   <?php include '../app/views/dashboard.php'; ?>
 
-  <div id="panel" class="panel-container">
-      <strong>How satisfied are you with our website services?</strong>
-      <div class="ratings-container">
-        <div class="rating active">
-          <img
-            src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-30.png"
-            alt="Satisfied"
-          />
-          <small>Satisfied</small>
-        </div>
-        <div class="rating">
-          <img
-            src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-3.png"
-            alt="Neutral"
-          />
-          <small>Neutral</small>
-        </div>
-        <div class="rating">
-          <img
-            src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-17.png"
-            alt="Unhappy"
-          />
-          <small>Unhappy</small>
-        </div>
+  <!-- Feedback Form -->
+  <div class="feedback-container">
+    <h2>Feedback Form</h2>
+    <div id="error_message"></div>
+    <form method="POST" id="feedbackForm" action="">
+      <div class="input_field">
+        <textarea id="feedback"  name="feedback" placeholder="Your Feedback"></textarea>
       </div>
-      <button class="btn" id="send">Send Review</button>
-      <p class="thank-you-message" id="thankYouMessage">Thank you for your feedback!</p>
-    </div>
-
-    <script src="../public/js/feedback.js"></script>
-  </body>
+      <div class="btn">
+        <input type="submit" value="Submit Feedback">
+      </div>
+    </form>
+  </div>
+  <script src="../public/js/feedback.js"></script>
+ 
+</body>
 </html>

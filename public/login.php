@@ -3,7 +3,6 @@ require '../app/db/config.php';
 require '../app/model/user_class.php'; 
 
 $user = new User($conn);
-
 // Handle sign-up
 if (isset($_POST["submit"])) {
     $name =htmlspecialchars($_POST["signup-username"],ENT_QUOTES,'UTF-8') ;
@@ -30,12 +29,6 @@ if (isset($_POST["submitt"])) {
   }
 } 
 ?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
