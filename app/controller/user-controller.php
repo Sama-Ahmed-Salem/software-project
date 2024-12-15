@@ -17,5 +17,12 @@ public function login()
   $this->model->signIn($username,$password);
 }
 
+public function rating()
+{
+  $username=$_REQUEST['username'];
+  $feedback=$_REQUEST['feedback'];
+  $this->model->submitFeedback($username,$feedback);
+}
+
 }
 ?>

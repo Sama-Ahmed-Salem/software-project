@@ -67,8 +67,31 @@ class User extends Model {
         } else {
             return "Invalid username.";
         }
-    }      
+    } 
+
+    public function submitFeedback($username, $feedback) {
+        if (empty($feedback)) {
+            return "Feedback cannot be empty.";
+        }
+
+        // Insert or update feedback into the database for the specific user
+        $query = "UPDATE tb_user SET feedback = ? WHERE name = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ss", $feedback, $username);
+
+        if ($stmt->execute()) {
+           
+        } else {
+            
+        }
     }
+}
+ 
+
+
+    
+
+    
 
 
 ?>
