@@ -21,12 +21,36 @@ if (isset($_POST["submitt"])) {
   $password =htmlentities($_POST["signin-password"],ENT_QUOTES,'UTF-8') ;
   $message =htmlspecialchars($user->signIn($username, $password),ENT_QUOTES,'UTF-8') ;
 
-  if ($message === "Login successful.") {
-      header("Location: user.php");
-      exit;
-  } else {
-      echo "<script>alert('$message');</script>";
-  }
+//   if ($message === "Login successful.") {
+//       header("Location: user.php");
+//       exit;
+//   } else {
+//       echo "<script>alert('$message');</script>";
+//   }
+
+if ($message === "Login successful.") {
+	// Fetch the role of the user
+	$sql = "SELECT role FROM tb_user WHERE name = ?";
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$stmt->bind_result($role);
+	$stmt->fetch();
+	$stmt->close();
+
+	// Redirect based on the role
+	if ($role === 'admin') {
+		// Redirect to admin page
+		header("Location: admin.php");
+	} else {
+		// Redirect to user page
+		header("Location: user.php");
+	}
+	exit; // Always call exit after a header redirect to stop further execution
+} else {
+	echo "<script>alert('$message');</script>";
+}
+
 } 
 ?>
 <!DOCTYPE html>

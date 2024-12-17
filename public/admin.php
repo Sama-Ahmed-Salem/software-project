@@ -1,3 +1,34 @@
+<?php
+require '../app/db/config.php'; 
+require '../app/model/admin-class.php'; 
+
+$admin = new Admin($conn);
+
+//
+if (!isset($_SESSION['username'])) {
+    echo "You must be logged in to access the admin panel.";  // Send a user-friendly message if not logged in
+    exit;
+}
+
+$username = $_SESSION['username'];  // Get the logged-in user's username
+
+// Check if the logged-in user is an admin
+$sql = "SELECT role FROM tb_user WHERE name = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($role);
+$stmt->fetch();
+$stmt->close();
+
+// If the user is not an admin, show a message or redirect them
+if ($role !== 'admin') {
+    echo "You do not have the necessary permissions to access this page.";  // Inform the user they are not an admin
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

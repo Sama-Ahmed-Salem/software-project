@@ -30,6 +30,7 @@ CREATE TABLE `tb_user` (
   `name` VARCHAR(25) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `password` VARCHAR(75) NOT NULL,
+  `role` VARCHAR(10) NOT NULL DEFAULT 'user',
   `feedback` TEXT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -38,12 +39,12 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`name`, `email`, `password`, `feedback`) VALUES
-('jana', 'jana1@gmail.com', PASSWORD('jana123'), NULL),
-('sama', 'sama1@gmail.com', PASSWORD('sama123'), NULL),
-('mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123'), NULL),
-('habiba', 'habiba1@example.com', PASSWORD('habiba123'), NULL),
-('shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'), NULL);
+INSERT INTO `tb_user` (`name`, `email`, `password`,`role`,  `feedback`) VALUES
+('jana', 'jana1@gmail.com', PASSWORD('jana123'), 'admin',NULL),
+('sama', 'sama1@gmail.com', PASSWORD('sama123'), 'user',NULL),
+('mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123'), 'user',NULL),
+('habiba', 'habiba1@example.com', PASSWORD('habiba123'), 'user',NULL),
+('shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'), 'user',NULL);
 
 -- --------------------------------------------------------
 
