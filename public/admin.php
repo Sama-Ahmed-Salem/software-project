@@ -49,14 +49,29 @@ if ($role !== 'admin') {
                 <tr>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Status</th>
                     <th>Task</th>
                     <th>Task Status</th>
                     <th>Feedback</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+
+            <?php
+    $users = $admin->retrieveUsers(); // Retrieve users using the Admin class
+    foreach ($users as $user) {
+        echo "<tr>
+            <td>" . htmlspecialchars($user['name']) . "</td>
+            <td>" . htmlspecialchars($user['email']) . "</td>
+            <td>--</td> <!-- Placeholder for Task -->
+            <td>--</td> <!-- Placeholder for Task Status -->
+            <td>" . htmlspecialchars($user['feedback']) . "</td>
+        </tr>";
+    }
+    ?>
+
+
+
+                <!-- <tr>
                     <td>JohnDoe</td>
                     <td>john.doe@example.com</td>
                     <td>Active</td>
@@ -79,7 +94,7 @@ if ($role !== 'admin') {
                     <td>Update Reports</td>
                     <td>Completed</td>
                     <td>Great job!</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
