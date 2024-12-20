@@ -126,7 +126,7 @@ body {
         </ul>
         <div class="logout-section">
             <li class="nav-item">
-                <a href="landing.php">
+                <a href="../app/views/landing.php">
                     <img src="images/log-out.png" alt="Logout" class="icon">
                     <span>Logout</span>
                 </a>

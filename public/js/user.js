@@ -195,3 +195,49 @@ for (let day = 1; day <= totalDays; day++) {
 
 // Initial render of the calendar
 renderCalendar();
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('tasks').addEventListener('click', function (event) {
+        const taskItem = event.target.closest('.task-item');
+        const taskId = taskItem.getAttribute('data-task-id');
+
+        if (event.target.classList.contains('delete') && taskId) {
+            if (confirm("Are you sure you want to delete this task?")) {
+                fetch('user.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ task_id: taskId, action: 'delete' })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            taskItem.remove();
+                        } else {
+                            alert("Error deleting task: " + data.message);
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            }
+        }
+
+        if (event.target.classList.contains('done') && taskId) {
+            fetch('user.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task_id: taskId, action: 'done' })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        taskItem.querySelector('.task_name').classList.add('completed');
+                        event.target.style.display = 'none';
+                    } else {
+                        alert("Error updating task: " + data.message);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    });
+});
