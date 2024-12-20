@@ -22,6 +22,7 @@ if (isset($_POST["submitt"])) {
   $message =htmlspecialchars($user->signIn($username, $password),ENT_QUOTES,'UTF-8') ;
 
   if ($message === "Login successful.") {
+	$_SESSION['username'] = $username; // Set the username in the session
       header("Location: user.php");
       exit;
   } else {
