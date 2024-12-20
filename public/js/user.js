@@ -51,26 +51,7 @@ const doneTasksChart = new Chart(ctx, {
      }
  }
 
- function displayTasks() {
-const tasksContainer = document.getElementById('tasks');
-tasksContainer.innerHTML = '';
-tasks.forEach((task, index) => {
- const taskElement = document.createElement('div');
- taskElement.classList.add('task-item');
- taskElement.innerHTML = `
-     <div class="task-info">
-         <p><strong>${task.name}</strong></p>
-         <p>Date: ${task.date}</p>
-         <p>Priority: ${task.priority}</p>
-         <p>Category: ${task.category}</p>
-     </div>
-    <img src="images/done.png" alt="Done" class="done" onclick="markAsDone(${index})">
 
-     <img src="images/delete.png" alt="Delete" onclick="deleteTask('${task.name}')">
- `;
- tasksContainer.appendChild(taskElement);
-});
-}
 
 function markAsDone(taskIndex) {
 const task = tasks[taskIndex];
