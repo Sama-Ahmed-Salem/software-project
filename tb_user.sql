@@ -31,6 +31,7 @@ CREATE TABLE `tb_user` (
   `email` VARCHAR(50) NOT NULL,
   `password` VARCHAR(75) NOT NULL,
   `role` VARCHAR(10) NOT NULL DEFAULT 'user',
+  `role` VARCHAR(10) NOT NULL DEFAULT 'user',
   `feedback` TEXT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -45,11 +46,17 @@ INSERT INTO `tb_user` (`name`, `email`, `password`,`role`,  `feedback`) VALUES
 ('mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123'), 'user',NULL),
 ('habiba', 'habiba1@example.com', PASSWORD('habiba123'), 'user',NULL),
 ('shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'), 'user',NULL);
+INSERT INTO `tb_user` (`name`, `email`, `password`,`role`, `feedback`) VALUES
+('jana', 'jana1@gmail.com', PASSWORD('jana123'),'admin', NULL),
+('sama', 'sama1@gmail.com', PASSWORD('sama123'),'user', NULL),
+('mostafa', 'mostafa1@gmail.com', PASSWORD('mostafa123'), 'user',NULL),
+('habiba', 'habiba1@example.com', PASSWORD('habiba123'),'user', NULL),
+('shaaban', 'shaaban1@gmail.com', PASSWORD('shaaban123'), 'user',NULL);
 
 -- --------------------------------------------------------
 
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT   hi */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

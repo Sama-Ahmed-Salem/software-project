@@ -127,7 +127,7 @@ if ($message === "Login successful.") {
 						</button>
 						<p>
 							<b>
-								Forgot password?
+								Forgot password? 
 							</b>
 						</p>
 						<p>
