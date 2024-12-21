@@ -1,7 +1,10 @@
 <?php
 require_once(__DIR__ . '/model.php');
-class Admin extends Model {
-
+    class Admin extends Model {
+        
+    private $username;
+    private $email;
+    private $password;
     protected  $conn;
 
     public function __construct($conn) {
