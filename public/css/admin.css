@@ -1,79 +1,118 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f0f1f7;
-  color: #333;
+/* Profile Container */
+.profile-container {
+  background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA); /* Gradient background */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  max-width: 700px; /* Increased maximum width for a larger square */
+  height: 700px; /* Increased height to match the larger width */
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px;
+  margin: 75px auto; /* Center container horizontally */
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  justify-content: space-evenly; /* Spaced out elements evenly within the container */
+  align-items: center;
+  font-family: 'Arial', sans-serif; /* Default font */
 }
 
-.container {
-  text-align: center;
-  padding: 20px;
-  flex: 1; /* Ensures content grows and pushes the logout button down */
+/* Profile Icon */
+.profile-icon img {
+  width: 120px; /* Increased profile icon size */
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px; /* Increased margin */
 }
 
-.welcome-header {
-  font-family: 'Lobster', sans-serif;
-  font-size: 36px;
-  background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA);
-  margin-bottom: 30px;
+/* User's Name */
+h2 {
+  font-size: 28px; /* Adjusted font size */
+  margin-bottom: 10px;
+  color: #fff;
+  background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA); /* Gradient text */
+  -webkit-background-clip: text; /* Safari and Chrome */
+  background-clip: text; /* Firefox */
+  font-weight: bold;
+  font-family: 'Verdana', sans-serif; /* Custom font for name */
 }
 
-.search-bar {
-  margin-bottom: 20px;
+/* User's Email */
+p {
+  font-size: 18px; /* Larger font size for email */
+  margin: 5px 0;
+  color: #333;
+  font-family: 'Verdana', sans-serif; /* Custom font for email */
+  font-weight: 600; /* Slightly bolder font */
 }
 
-.search-bar input {
-  width: 60%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-table {
-  width: 80%;
-  margin: 0 auto;
-  border-collapse: collapse;
-  background-color: #FFDAF5;
-  border: 1px solid #ddd;
-}
-
-table th, table td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-table th {
-  background-color: #CDC1FF;
-  color: white;
-}
-
-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-table tr:hover {
-  background-color: #E6F7FF;
-}
-
-.logout-button {
-  display: block;
-  margin: 20px auto;
-  background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA);
+/* Tasks Left Section */
+.tasks-left {
   color: black;
-  border: none;
-  padding: 10px 15px;
+  padding: 12px 25px;
   border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  font-size: 16px; /* Slightly larger font size */
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
 }
 
-.footer {
+/* Button Styling */
+.btn {
+  display: block;
+  background-color: white;
+  color: black;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  max-width: 280px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif; /* Custom font for button */
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #BFECFF, #CDC1FF, #FFF6E3, #FFCCEA); /* Gradient text */
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .profile-container {
+    max-width: 90%; /* Allow it to take up more space on smaller screens */
+    height: auto; /* Remove fixed height to adjust for content */
+  }
+
+  .profile-icon img {
+    width: 100px;
+    height: 100px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .tasks-left {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+    max-width: 220px;
+  }
+}
+
+
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
   text-align: center;
-  padding: 20px;
+  font-weight: bold;
 }

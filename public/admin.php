@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/admin.css">
+    <link rel="stylesheet" href="./css/admin.css">
 </head>
 <body>
     <div class="container">
@@ -56,6 +56,6 @@
         <button class="logout-button" onclick="window.location.href='app/views/landing.php'">Log Out</button>
     </div>
 
-    <script src="public/js/admin.js"></script>
+    <script src="./js/admin.js"></script>
 </body>
 </html>

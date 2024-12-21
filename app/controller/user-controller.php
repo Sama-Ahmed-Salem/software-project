@@ -24,5 +24,7 @@ public function rating()
   $this->model->submitFeedback($username,$feedback);
 }
 
+
+
 }
 ?>
