@@ -125,11 +125,11 @@ if ($message === "Login successful.") {
 						<button type="submit" name="submitt">
 							Sign in
 						</button>
-						<p>
+						<!-- <p>
 							<b>
 								Forgot password? 
 							</b>
-						</p>
+						</p> -->
 						<p>
 							<span>
 								Don't have an account?

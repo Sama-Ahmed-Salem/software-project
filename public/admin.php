@@ -99,7 +99,7 @@ if ($role !== 'admin') {
         </table>
     </div>
     <div class="footer">
-        <button class="logout-button" onclick="window.location.href='app/views/landing.php'">Log Out</button>
+        <button class="logout-button" onclick="window.location.href='../app/views/landing.php'">Log Out</button>
     </div>
 
     <script src="./js/admin.js"></script>
