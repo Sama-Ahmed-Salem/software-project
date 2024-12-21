@@ -2,27 +2,32 @@
 require_once(__DIR__ . '/model.php');
 class Admin extends Model {
 
-    public function __construct($db_connection) {
-        $this->conn = $db_connection;
+    protected  $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
     }
 
-// Function to retrieve name, email, and feedback from tb_user table
-public function retrieveUsers() {
-    $query = "SELECT name, email, feedback FROM tb_user";
-    $result = $this->conn->query($query);
+   
+    public function retrieveUsersWithTasks() {
+        $sql = "
+            SELECT u.id, u.name, u.email, u.feedback, t.task_name, t.task_status
+            FROM tb_user u
+            LEFT JOIN tasks t ON u.id = t.user_id
+        ";
 
-    if ($result->num_rows > 0) {
-        // Fetch all results as an associative array
-        $users = [];
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $usersWithTasks = [];
+            while ($row = $result->fetch_assoc()) {
+                $usersWithTasks[] = $row;
+            }
+            return $usersWithTasks;
+        } else {
+            return [];
         }
-        return $users; // Return the array of users
-    } else {
-        return []; // Return an empty array if no users found
     }
-}
-
 
 }
 ?>
