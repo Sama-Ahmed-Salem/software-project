@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2024 at 07:53 PM
+-- Generation Time: Dec 21, 2024 at 04:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,21 +34,9 @@ CREATE TABLE `tasks` (
   `task_date` date DEFAULT NULL,
   `task_priority` enum('High','Medium','Low') DEFAULT NULL,
   `task_category` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `task_status` enum('Incomplete','Complete') NOT NULL DEFAULT 'Incomplete'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tasks`
---
-
-INSERT INTO `tasks` (`id`, `user_id`, `task_name`, `task_date`, `task_priority`, `task_category`, `created_at`) VALUES
-(1, 3, 'lskadn', '2024-12-03', 'Medium', 'Home', '2024-12-17 18:08:23'),
-(2, 3, 'lskadn', '2024-12-03', 'Medium', 'Home', '2024-12-17 18:17:20'),
-(3, 3, 'lskadn', '2024-12-03', 'Medium', 'Home', '2024-12-17 18:18:48'),
-(4, 3, 'dssad', '2024-12-06', 'Medium', 'Home', '2024-12-17 18:19:05'),
-(5, 3, 'dssad', '2024-12-06', 'Medium', 'Home', '2024-12-17 18:23:44'),
-(6, 3, 'bv', '2024-12-07', 'Medium', 'Entertainment', '2024-12-17 18:24:54'),
-(7, 3, 'bv', '2024-12-07', 'Medium', 'Entertainment', '2024-12-17 18:29:51');
 
 --
 -- Indexes for dumped tables
@@ -69,7 +57,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- Constraints for dumped tables
